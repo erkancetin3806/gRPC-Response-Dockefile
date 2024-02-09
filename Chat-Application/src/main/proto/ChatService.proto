@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package com.erkancetin.grpc;
+
+service ChatService {
+  rpc sendMessage(MessageRequest) returns (MessageResponse);
+}
+
+message MessageRequest {
+  string sender = 1;
+  string message = 2;
+}
+
+message MessageResponse {
+  string sender = 1;
+  string message = 2;
+}

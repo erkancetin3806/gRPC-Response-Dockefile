@@ -1,0 +1,21 @@
+## Proje en üst klasöründe sağ click New>File kısmından "Dockerfile" adıyla oluştur.
+   Bu kısımda docker simgesi gözüküyor zaten.
+
+## Aşağıdaki gibi yazıyoruz...
+
+-->> Dockerfile 
+
+FROM openjdk:17
+WORKDIR /app
+ADD build/libs/Chat-Application-0.0.1-SNAPSHOT.jar Chat-Application-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","Chat-Application-0.0.1-SNAPSHOT.jar"]   --->> Başlandığında projede veya contaier da çalıştıracaklarımız.
+
+## docker build -t chat-application-v1:0.0.1 .    -->> Bu komutu çalıştırıyoruz dockerImageName:VersionNumber image oluşacaktır.
+
+## docker run -d --name chat-application -p 9999:8080 chat-application-v1:0.0.1 --->> İmage dan container ayağa kaldırıyoruz.
+
+-->> Burada yukarıdaki komutu çalıştırdığımızda tomcat:8080, grpc:9090, socket:9999 portunda çalıştığı için istekleri bu şekilde kabul ediyoruz.
+## docker run -d --name chat-application -p 9999:9999 -p 9090:9090 chat-application-v1:0.0.1
+
+-->> docker save -o "C:\Users\Erkan\Desktop\chat-application-v1.tar" chat-application-v1:0.0.1  -> Masaüstünde .tar oluşturma
+-->> docker load -i ./chat-application-v1.tar -> Masaüstünde .tar dosyasının bulunduğu dizinde iken bu komutu calıstır docker a yükler.
